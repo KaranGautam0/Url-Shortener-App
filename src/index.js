@@ -22,6 +22,12 @@ app.get("/", (req, res) => {
   res.json({ Message: "Welcome to short url generator api" });
 });
 
+// importing router here
+const routerURL = require("./routers/url");
+
+// use this routers
+app.use("/url", routerURL);
+
 app.listen(PORT, () => {
   console.log(`Server started at port: ${PORT}`);
 });
