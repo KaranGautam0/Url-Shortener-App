@@ -1,5 +1,6 @@
 const shortid = require("shortid");
 const URL = require("../models/url");
+const { Timestamp } = require("mongodb");
 
 async function handleGenerateNewShortURL(req, res) {
   const { url } = req.body;
@@ -15,6 +16,18 @@ async function handleGenerateNewShortURL(req, res) {
   res.status(200).json({ message: "URL Saved." });
 }
 
+async function Analytics(req, res) {
+  const shortID = req.params.shortid;
+  const result = await URL.findOne({ shortID });
+
+  return res.json({
+    totalChicks: result.visitHistory.length,
+    analytics: result.visitHistory,
+  });
+}
+
 module.exports = {
   handleGenerateNewShortURL,
+  Analytics,
+  shortIDFind,
 };
