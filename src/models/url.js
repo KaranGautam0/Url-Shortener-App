@@ -1,4 +1,3 @@
-const { Timestamp } = require("mongodb");
 const mongoose = require("mongoose");
 
 const urlSchma = new mongoose.Schema(
@@ -12,7 +11,7 @@ const urlSchma = new mongoose.Schema(
       type: String,
       required: true,
     },
-    visitHistory: [{ timestamp: { type: Object } }],
+    visitHistory: [{ timestamp: { type: Number } }],
   },
   { timestamps: true }
 );

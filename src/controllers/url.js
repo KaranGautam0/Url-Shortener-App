@@ -1,6 +1,5 @@
 const shortid = require("shortid");
 const URL = require("../models/url");
-const { Timestamp } = require("mongodb");
 
 async function handleGenerateNewShortURL(req, res) {
   const { url } = req.body;
@@ -13,7 +12,7 @@ async function handleGenerateNewShortURL(req, res) {
     visitHistory: [],
   });
 
-  res.status(200).json({ message: "URL Saved." });
+  res.status(200).json({ message: "URL Saved.", shortID: shortID });
 }
 
 async function Analytics(req, res) {
@@ -24,6 +23,25 @@ async function Analytics(req, res) {
     totalChicks: result.visitHistory.length,
     analytics: result.visitHistory,
   });
+}
+
+// shortid find and redirect that url
+async function shortIDFind(req, res) {
+  const shortID = req.params.shortid;
+  const entry = await URL.findOneAndUpdate(
+    {
+      shortID,
+    },
+    {
+      $push: {
+        visitHistory: {
+          timestamp: Date.now(),
+        },
+      },
+    }
+  );
+  console.log(entry, shortID);
+  res.redirect(entry.redirectURL);
 }
 
 module.exports = {
