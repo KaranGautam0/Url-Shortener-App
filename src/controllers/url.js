@@ -20,6 +20,8 @@ async function Analytics(req, res) {
   const result = await URL.findOne({ shortID });
 
   return res.json({
+    shortID : result.shortID,
+    LongURL: result.redirectURL,
     totalChicks: result.visitHistory.length,
     analytics: result.visitHistory,
   });
