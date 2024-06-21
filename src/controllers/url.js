@@ -57,12 +57,12 @@ async function shortIDFind(req, res) {
       }
     );
 
-    if(!entry) return res.status(404).json({error:"ShortID not found"})
+    if (!entry) return res.status(404).json({ error: "ShortID not found" });
 
     console.log(`Entry found: ${entry}, shortID:${shortID}`);
     res.redirect(entry.redirectURL);
   } catch (error) {
-    console.log(`Error during shortIDFind : ${error.message}`)
+    console.log(`Error during shortIDFind : ${error.message}`);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }
