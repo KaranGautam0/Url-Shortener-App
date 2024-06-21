@@ -28,6 +28,10 @@ const routerURL = require("./routers/url");
 // use this routers
 app.use("/url", routerURL);
 
+app.get("*", (req, res) => {
+  res.status(404).send("<h1>404! Page not found</h1>");
+});
+
 app.listen(PORT, () => {
   console.log(`Server started at port: ${PORT}`);
 });
