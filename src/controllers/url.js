@@ -20,15 +20,23 @@ async function handleGenerateNewShortURL(req, res) {
 }
 
 async function Analytics(req, res) {
-  const shortID = req.params.shortid;
-  const result = await URL.findOne({ shortID });
+  try {
+    const {shortid:shortID} = req.params;
+    if(!shortID) return res.status(400).json({error: "shortID id required"});
+  
+    const result = await URL.findOne({ shortID });
+    if (!result) return res.status(404).json({error: "shortID not found!"})
+  
+    return res.json({
+      shortID: result.shortID,
+      LongURL: result.redirectURL,
+      totalChicks: result.visitHistory.length,
+      analytics: result.visitHistory,
+    });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 
-  return res.json({
-    shortID: result.shortID,
-    LongURL: result.redirectURL,
-    totalChicks: result.visitHistory.length,
-    analytics: result.visitHistory,
-  });
 }
 
 // shortid find and redirect that url
