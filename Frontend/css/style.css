@@ -56,7 +56,7 @@ nav button:hover {
   margin: 1px 1px 13px 1px;
   background-color: #f6f9f551;
   color: #0742e4d1;
-  background-color:#fff;
+  background-color: #fff;
   border: 1px solid;
 }
 .Home input {
@@ -103,4 +103,32 @@ nav button:hover {
 }
 .Home .output button:hover {
   background-color: #117a8b;
+}
+
+/* ===== toggle buttons ==== */
+.Home,
+.history {
+  display: none;
+}
+
+/* ===== history ====== */
+
+.history table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 99%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.history th,
+.history td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.8rem;
+  overflow: hidden;
+  position: relative;
 }
