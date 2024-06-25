@@ -132,3 +132,7 @@ a {
   overflow: hidden;
   position: relative;
 }
+
+#if-No-Data {
+  text-align: center;
+}
