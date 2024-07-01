@@ -9,7 +9,10 @@ This URL Shortener App is a simple tool that allows users to paste long url usin
 
 ## Functionality
 
-- **Short-URL:**This is button when you chick then api will be creating shortUrl, 
+- Home button 
+1. Shorten URL:  This is button when you chick then api will be check (input field not be empty, url will be currrect formet ).
+2. if everythink was right then short id will be created, and store localstorege, display Short URL on screen.
+3. Short url how many time user will be chick that data store in database. 
 
 ## Usage
 
